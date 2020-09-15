@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import TopRepoList from './components/RepoList.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      repos: []
+    this.state = {
+      userRepos: [25, 45],
+      forkedRepos: [],
+      forked: false
     }
 
   }
@@ -16,15 +19,34 @@ class App extends React.Component {
   search (term) {
     console.log(`${term} was searched`);
     // TODO
+    //make an ajax post request to the server with query of username
+    //wait for response.
+    // plug response into this.state.userRepos
+  }
+
+  getMostForked () {
+    //set state of forked
+    // make an ajax get request to server
+    //await results from server
+    //plug results into the forked watched repos
+
   }
 
   render () {
-    return (<div>
-      <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
-    </div>)
+    return (
+      <div>
+        <h1>Welcome to Github Fetcher!</h1>
+        <h2>Please type in a github username below to pull up the their repos:</h2>
+        <Search onSearch={this.search.bind(this)}/>
+        <button onClick={this.getMostForked.bind(this)}>Click to see the current most forked repos on github</button>
+        {/* <TopRepoList top={this.state.forkedRepos} forked={this.state.forked}/> */}
+        <RepoList repos={this.state.forked ? this.state.forkedRepos : this.state.userRepos}/>
+      </div>
+    )
+
   }
 }
+
+export default App;
 
 ReactDOM.render(<App />, document.getElementById('app'));
