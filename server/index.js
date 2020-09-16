@@ -24,11 +24,12 @@ app.post('/repos', function (req, res) {
 
   console.log(`Recieved ${req.method} and the data sent was`, req.body);
 
-  githubHelper.getReposByUsername(req.body);
+  var results = githubHelper.getReposByUsername(req.body);
 
   // res.set(headers);
-  res.send('Sent to getReposByUsername!');
+  res.send('Sent to githubhandler');
 });
+
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!

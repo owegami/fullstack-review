@@ -21,6 +21,8 @@ let save = (repoId, repoName, userName, forks, url) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
+  console.log('made it to db save mathod:', repoId, repoName, userName, forks, url);
+
   let newRepoEntry = new Repo({
     repoId: repoId,
     repoName: repoName,
